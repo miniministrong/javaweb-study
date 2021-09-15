@@ -1,0 +1,20 @@
+package study.javaweb.servletcontext;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet(name = "oneServlet", urlPatterns = "/one")
+public class OneServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 通过请求对象向全局作用域对象所要ServletContext对象
+        ServletContext application = request.getServletContext();
+        // 将数据添加到全局作用域对象中，作为共享数据
+        application.setAttribute("key1", 100);
+    }
+}
